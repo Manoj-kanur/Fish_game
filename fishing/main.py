@@ -1,7 +1,7 @@
 """
 Fishing Game (Lab Starter)
 
-Run with:  python3 main.py
+Run with: python main.py
 """
 
 import pygame
@@ -13,16 +13,22 @@ from game.renderer import WINDOW_SIZE
 def main():
     pygame.init()
     screen = pygame.display.set_mode(WINDOW_SIZE)
-    pygame.display.set_caption("Fishing")
+    pygame.display.set_caption("Fishing Lab - Retro Angler")
     clock = pygame.time.Clock()
-    font = pygame.font.SysFont("consolas", 22)
+    font = pygame.font.SysFont("consolas", 20, bold=True)
 
     engine = GameEngine()
     running = True
+
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            else:
+                engine.handle_event(event)
+
+        if not running:
+            break
 
         engine.update()
         engine.draw(screen, font)
